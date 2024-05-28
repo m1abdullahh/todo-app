@@ -80,6 +80,8 @@ export class TasksService {
     if (!task) {
       throw new NotFoundException('Task not found.');
     }
+
+    return task;
   }
 
   async createTask(data: AddTaskDTO) {

@@ -41,9 +41,11 @@ export class AddTaskDTO {
 export class UpdateTaskDTO extends PartialType(AddTaskDTO) {}
 
 export class PaginationDTO {
+  @ApiProperty({ type: Number, required: true })
   @IsNotEmpty()
   page: number;
 
+  @ApiProperty({ type: Number, required: true })
   @IsNotEmpty()
   perPage: number;
 }
