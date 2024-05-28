@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id               String       @id @unique @default(cuid())
+  name             String
+  due_date         DateTime
+  status           TaskStatus   @default(IN_PROGRESS)
+  priority         TaskPriority @default(MEDIUM)
+  date_of_creation DateTime     @default(now())
+  is_active        Boolean      @default(true)
+}
+
+enum TaskStatus {
+  PENDING
+  DONE
+  IN_PROGRESS
+  PAUSED
+}
+
+enum TaskPriority {
+  HIGH
+  MEDIUM
+  LOW
+}
